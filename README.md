@@ -1,6 +1,6 @@
 ﻿# sql_examples
 Creates a database, tables and runs queries on them.\
-Database will be named "sql_examples"
+(The database will be named "sql_examples")
 
 ## setup
 ```sh
