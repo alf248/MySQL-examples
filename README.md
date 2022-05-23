@@ -1,6 +1,8 @@
 ﻿# sql_examples
 Creates a database, tables and runs queries on them.
 
+Requires MySQL
+
 (The database will be named "sql_examples")
 
 ## setup
@@ -21,7 +23,7 @@ PASSWORD=<password>
 ```
 
 ## schema
-This schema is about cars
+This schema is about cars. It could be the schema for a car dealer, for example.
 - brands (like Toyota)
 - models (like Corolla)
 - customers
