@@ -1,10 +1,11 @@
-import sql_setup
+from sql.begin import begin_sql
 import os
 
 
 mySQL_username = os.getenv('USERNAME')
 mySQL_password = os.getenv('PASSWORD')
 mySQL_database = "sql_examples"
+
 
 if (not mySQL_username or not mySQL_password):
     print("--ENV vars not found")
@@ -14,4 +15,5 @@ if (not mySQL_username or not mySQL_password):
     print("\tPASSWORD=<my_password>")
     quit()
 
-sql_setup.start(mySQL_username, mySQL_password, mySQL_database)
+
+begin_sql(mySQL_username, mySQL_password, mySQL_database)
