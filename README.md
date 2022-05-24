@@ -1,5 +1,5 @@
 ﻿# sql_examples
-Creates tables and runs queries on them.
+A few examples with MySQL
 
 ## car dealer
 The tables are those of a "car dealer".
