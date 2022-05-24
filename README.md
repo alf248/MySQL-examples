@@ -1,33 +1,41 @@
 ﻿# sql_examples
-Creates a database, tables and runs queries on them.
+Creates tables and runs queries on them.
 
-Requires MySQL
-
-(The database will be named "sql_examples")
-
-## setup
-```sh
-git clone https://github.com/alf248/sql_examples.git
-
-cd sql_examples
-
-pipenv install
-
-pipenv run python main.py
-```
-
-It will ask for MySQL credentials. Put them in an .env with this content:
-```sh
-USERNAME=<username>\
-PASSWORD=<password>
-```
-
-## schema
-This schema is about cars. It could be the schema for a car dealer, for example.
+## car dealer
+The tables are those of a "car dealer".
 - brands (like Toyota)
 - models (like Corolla)
 - customers
 - orders
+
+### queries
+
+count all models for each car manufacturer:
+```sh
+SELECT brands.name, COUNT(models.model_id)
+FROM brands
+LEFT JOIN models
+    ON models.brand_id = brands.brand_id
+GROUP BY (brands.brand_id)
+```
+
+count all *fast* models for each car manufacturer:
+```sh
+SELECT brands.name, COUNT(CASE WHEN models.top_speed > 200 THEN 1 ELSE NULL END) AS count, MAX(models.top_speed) AS max
+FROM brands
+LEFT JOIN models
+    ON models.brand_id = brands.brand_id
+GROUP BY (brands.brand_id)
+```
+
+total sum of money each model has sold for:
+```sh
+SELECT models.name, SUM(orders.price) AS total
+FROM models
+INNER JOIN orders
+    ON models.model_id = orders.model_id
+GROUP BY (models.model_id)
+```
 
 ### schema
 
@@ -61,5 +69,11 @@ This schema is about cars. It could be the schema for a car dealer, for example.
         model_id INT,
         FOREIGN KEY (model_id) REFERENCES models(model_id)
     )
-    
-  
+
+## setup
+```sh
+git clone https://github.com/alf248/sql_examples.git
+cd sql_examples
+pipenv install
+pipenv run python main.py
+```
